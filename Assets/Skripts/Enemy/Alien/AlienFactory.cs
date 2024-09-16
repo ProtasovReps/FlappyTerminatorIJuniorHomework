@@ -9,13 +9,13 @@ public class AlienFactory : EnemyFactory
     [SerializeField] private float _moveSpeed;
     [SerializeField] private int _maxHealth;
 
+    private Container _bulletContainer;
     private PlayerShip _player;
-    private BulletContainer _bulletContainer;
 
-    public override void Initialize(PlayerShip player, BulletContainer container)
+    public override void Initialize(PlayerShip player, Container bulletContainer)
     {
         _player = player;
-        _bulletContainer = container;
+        _bulletContainer = bulletContainer;
     }
 
     public override Enemy Produce()

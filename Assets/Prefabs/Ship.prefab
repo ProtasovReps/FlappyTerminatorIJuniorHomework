@@ -9957,7 +9957,6 @@ GameObject:
   - component: {fileID: 6839015395341780819}
   - component: {fileID: 2711457906614708903}
   - component: {fileID: 4033454101224107160}
-  - component: {fileID: 1491453408987638876}
   - component: {fileID: 3840697151885070480}
   - component: {fileID: 1738079635093868317}
   m_Layer: 0
@@ -10050,7 +10049,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shooter: {fileID: 4033454101224107160}
-  _colliderSwitcher: {fileID: 1491453408987638876}
 --- !u!114 &6839015395341780819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10094,19 +10092,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputReader: {fileID: 7025810770846767144}
---- !u!114 &1491453408987638876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6990920113146364727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c25447fda617984bb1d481614c6c0cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colliderDisableTime: 1
 --- !u!50 &3840697151885070480
 Rigidbody2D:
   serializedVersion: 4

@@ -9,7 +9,10 @@ public abstract class Gun : MonoBehaviour
     protected float ReloadTime => _gunInfo.ReloadTime;
     protected float ShootForce => _gunInfo.ShootForce;
 
-    public void Initialize(BulletContainer container) => _bulletPool.Initialize(_gunInfo.Bullet, container, _gunInfo.Damage);
+    public void Initialize(Container bulletContainer)
+    {
+        _bulletPool.Initialize(bulletContainer, _gunInfo.Bullet, _gunInfo.Damage);
+    }
 
     public abstract void Shoot();
 

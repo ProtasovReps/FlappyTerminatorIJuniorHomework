@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _reloadTime: 0.8
   _shootForce: 500
-  _damage: 2
+  _damage: 1
   _bullet: {fileID: 3154951427506135351, guid: 796e9fa13d2c6d64ca933164077fdad5, type: 3}

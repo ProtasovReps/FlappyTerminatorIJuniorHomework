@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class BulletPool : ObjectPool<Bullet>
 {
-    private int _bulletDamage;
     private Bullet _prefab;
-    private BulletContainer _container;
+    private Container _container;
+    private int _bulletDamage;
 
-    public void Initialize(Bullet prefab, BulletContainer container, int bulletDamage)
+    public void Initialize(Container bulletContainer, Bullet prefab, int bulletDamage)
     {
+        _container = bulletContainer;
         _prefab = prefab;
-        _container = container;
         _bulletDamage = bulletDamage;
     }
 
@@ -17,29 +17,21 @@ public class BulletPool : ObjectPool<Bullet>
     {
         Bullet bullet;
 
-        if (Objects.Count == 0)
+        if (FreeObjects.Count == 0)
         {
             bullet = Instantiate(_prefab);
             bullet.Initialize(_bulletDamage);
             bullet.WorkedOut += Release;
 
-            _container.Add(bullet);
-            Objects.Enqueue(bullet);
+            bullet.transform.SetParent(_container.transform);
+            AllObjects.Add(bullet);
+            FreeObjects.Enqueue(bullet);
         }
 
-        bullet = Objects.Dequeue();
+        bullet = FreeObjects.Dequeue();
         bullet.transform.position = position;
 
         bullet.gameObject.SetActive(true);
         return bullet;
-    }
-
-    public override void Clear()
-    {
-        foreach (Bullet bullet in Objects)
-            bullet.WorkedOut -= Release;
-
-        Objects.Clear();
-        _container.Clear();
     }
 }

@@ -1,21 +1,29 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private Queue<T> _objects;
+    private Queue<T> _freeObjects;
+    private List<T> _allObjects;
 
-    protected Queue<T> Objects => _objects;
+    public event Action Released;
 
-    private void Awake() => _objects = new Queue<T>();
+    protected Queue<T> FreeObjects => _freeObjects;
+    protected List<T> AllObjects => _allObjects;
+
+    private void Awake()
+    {
+        _freeObjects = new Queue<T>();
+        _allObjects = new List<T>();
+    }
 
     public abstract T Get(Vector2 position);
 
-    public abstract void Clear();
-
     public void Release(T poolObject)
     {
-        _objects.Enqueue(poolObject);
+        _freeObjects.Enqueue(poolObject);
         poolObject.gameObject.SetActive(false);
+        Released?.Invoke();
     }
 }

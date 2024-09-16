@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerShipTracker))]
@@ -9,7 +10,7 @@ public abstract class Enemy : MonoBehaviour
     private IEnemyMoveable _movement;
     private IEnemyShootable _shooter;
 
-    public event Action<Enemy> Died;
+    public event Action<Enemy> WorkedOut;
 
     public IDamageable Health => _health;
 
@@ -19,7 +20,10 @@ public abstract class Enemy : MonoBehaviour
             _health.Died += Die;
     }
 
-    private void OnDisable() => _health.Died -= Die;
+    private void OnDisable()
+    {
+        _health.Died -= Die;
+    }
 
     public virtual void Initialize(int maxHealthValue, PlayerShip player, IEnemyMoveable moveable, IEnemyShootable shootable)
     {
@@ -46,6 +50,6 @@ public abstract class Enemy : MonoBehaviour
         _shooter.StopShooting();
         _movement.StopMoving();
         _shipTracker.StopTrack();
-        Died?.Invoke(this);
+        WorkedOut?.Invoke(this);
     }
 }

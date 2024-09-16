@@ -4,7 +4,7 @@ public class PlayerShipFactory : MonoBehaviour
 {
     [SerializeField] private PlayerShip _shipPrefab;
     [SerializeField] private Gun _gunPrefab;
-    [SerializeField] private BulletContainer _bulletContainer;
+    [SerializeField] private Container _bulletContainer;
     [SerializeField] private int _maxHealth;
 
     public PlayerShip Produce()

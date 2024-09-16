@@ -4,12 +4,12 @@ using UnityEngine;
 public class EnemyPool : ObjectPool<Enemy>
 {
     [SerializeField] private EnemyFactory _factory;
-    [SerializeField] private EnemyContainer _enemyContainer;
-    [SerializeField] private BulletContainer _bulletContainer;
+    [SerializeField] private Container _enemyContainer;
+    [SerializeField] private Container _bulletContainer;
     [SerializeField] private EnemyTargetPositionStash _positionStash;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private float _delay;
-    
+
     public void Initialize(PlayerShip player) => _factory.Initialize(player, _bulletContainer);
 
     public void StartSpawning() => StartCoroutine(GetDelayed());
@@ -18,16 +18,17 @@ public class EnemyPool : ObjectPool<Enemy>
     {
         Enemy newEnemy;
 
-        if (Objects.Count == 0)
+        if (FreeObjects.Count == 0)
         {
             newEnemy = _factory.Produce();
-            newEnemy.Died += Release;
+            newEnemy.WorkedOut += Release;
 
-            _enemyContainer.Add(newEnemy);
-            Objects.Enqueue(newEnemy);
+            newEnemy.transform.SetParent(_enemyContainer.transform);
+            AllObjects.Add(newEnemy);
+            FreeObjects.Enqueue(newEnemy);
         }
 
-        newEnemy = Objects.Dequeue();
+        newEnemy = FreeObjects.Dequeue();
         newEnemy.transform.position = position;
 
         if (_positionStash.TryGetFreePosition(out Vector2 targetPosition))
@@ -43,13 +44,15 @@ public class EnemyPool : ObjectPool<Enemy>
         }
     }
 
-    public override void Clear()
+    public void Clear()
     {
-        foreach (Enemy enemy in Objects)
-            enemy.Died -= Release;
-
-        Objects.Clear();
-        _enemyContainer.Clear();
+        foreach (Enemy enemy in AllObjects)
+        {
+            if (FreeObjects.Contains(enemy) == false)
+            {
+                enemy.Die();
+            }
+        }
     }
 
     private IEnumerator GetDelayed()

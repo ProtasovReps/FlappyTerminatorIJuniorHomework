@@ -62,7 +62,9 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: a866b0c5b2ac74647b0fbb5d76f7c2d6
+    name: AmbiencePitch
   m_AudioMixerGroupViews:
   - guids:
     - b17bad4f76afd31449141d289c0c8577
@@ -118,6 +120,7 @@ AudioMixerSnapshotController:
   m_FloatValues:
     eb0ad301dd227aa4f9b1c4ad0943d2eb: -19.928473
     29b73f22fc98ac6459d0a61fbbf16c02: -14.816608
+    a866b0c5b2ac74647b0fbb5d76f7c2d6: 0.3
   m_TransitionOverrides: {}
 --- !u!243 &7382949477799729473
 AudioMixerGroupController:
