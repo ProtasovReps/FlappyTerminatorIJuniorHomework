@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
-{ 
+{
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _gravityScale;
@@ -23,18 +23,9 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody.gravityScale = _gravityScale;
     }
 
-    private void OnEnable()
-    {
-        _inputReader.JumpButtonPressed += Move;
-    }
+    private void OnEnable() => _inputReader.JumpButtonPressed += Move;
 
-    private void OnDisable()
-    {
-        _inputReader.JumpButtonPressed -= Move;
-    }
+    private void OnDisable() => _inputReader.JumpButtonPressed -= Move;
 
-    private void Move()
-    {
-        _rigidbody.velocity = new Vector2(0f, _jumpForce);
-    }
+    private void Move() => _rigidbody.velocity = new Vector2(0f, _jumpForce);
 }

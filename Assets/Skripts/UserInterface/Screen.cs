@@ -1,11 +1,13 @@
+using System;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class Screen : MonoBehaviour
+public class Screen : MonoBehaviour, IScreen
 {
     [SerializeField] private Button _button;
     [SerializeField] private AudioPitchSetter _pitchSetter;
+
+    public event Action ButtonPressed;
 
     private void OnEnable()
     {
@@ -29,5 +31,6 @@ public class Screen : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameObject.SetActive(false);
+        ButtonPressed?.Invoke();
     }
 }

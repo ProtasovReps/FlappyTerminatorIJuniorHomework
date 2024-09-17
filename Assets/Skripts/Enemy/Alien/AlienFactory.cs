@@ -30,7 +30,6 @@ public class AlienFactory : EnemyFactory
         gun.Initialize(_bulletContainer);
         shooter.Initialize(gun, _startShootDelay);
         alien.Initialize(_maxHealth, _player, movement, shooter);
-
         return alien;
     }
 }

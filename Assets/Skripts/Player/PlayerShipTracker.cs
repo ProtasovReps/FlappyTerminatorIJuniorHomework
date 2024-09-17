@@ -6,15 +6,9 @@ public class PlayerShipTracker : MonoBehaviour
     private PlayerShip _player;
     private Coroutine _coroutine;
 
-    public void Initialize(PlayerShip player)
-    {
-        _player = player;
-    }
+    public void Initialize(PlayerShip player) => _player = player;
 
-    public void StartTrack()
-    {
-        _coroutine = StartCoroutine(Track());
-    }
+    public void StartTrack() => _coroutine = StartCoroutine(Track());
 
     public void StopTrack()
     {

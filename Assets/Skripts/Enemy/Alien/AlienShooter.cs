@@ -16,10 +16,7 @@ public class AlienShooter : MonoBehaviour, IEnemyShootable
         gun.transform.SetParent(transform);
     }
 
-    public void Shoot()
-    {
-        _coroutine = StartCoroutine(ShootConstantly());
-    }
+    public void Shoot() => _coroutine = StartCoroutine(ShootConstantly());
 
     public void StopShooting()
     {

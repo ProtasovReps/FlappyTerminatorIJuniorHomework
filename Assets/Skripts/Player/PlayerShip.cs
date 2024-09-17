@@ -41,5 +41,6 @@ public class PlayerShip : MonoBehaviour
 
         _shooter.Initialize(gun);
     }
+
     private void Die() => Died?.Invoke();
 }

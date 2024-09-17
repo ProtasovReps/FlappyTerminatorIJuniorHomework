@@ -215,9 +215,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerFactory: {fileID: 1708736118}
   _enemyPool: {fileID: 848807117}
-  _interface: {fileID: 1635147784}
-  _cameraEffector: {fileID: 519420035}
+  _userInterface: {fileID: 1635147784}
   _restarter: {fileID: 1314532416}
+  _cameraEffector: {fileID: 519420035}
 --- !u!4 &93254492
 Transform:
   m_ObjectHideFlags: 0
@@ -1821,8 +1821,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 609048124}
   - {fileID: 533554177}
+  - {fileID: 609048124}
   - {fileID: 1963622863}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

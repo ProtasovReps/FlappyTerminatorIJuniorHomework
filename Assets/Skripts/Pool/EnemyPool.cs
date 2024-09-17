@@ -21,7 +21,7 @@ public class EnemyPool : ObjectPool<Enemy>
         if (FreeObjects.Count == 0)
         {
             newEnemy = _factory.Produce();
-            newEnemy.WorkedOut += Release;
+            newEnemy.Died += Release;
 
             newEnemy.transform.SetParent(_enemyContainer.transform);
             AllObjects.Add(newEnemy);
@@ -44,7 +44,7 @@ public class EnemyPool : ObjectPool<Enemy>
         }
     }
 
-    public void Clear()
+    public void Reset()
     {
         foreach (Enemy enemy in AllObjects)
         {

@@ -8,10 +8,7 @@ public class Blaster : Gun
     private WaitForSeconds _reloadTime;
     private Coroutine _coroutine;
 
-    private void Awake()
-    {
-        _reloadTime = new WaitForSeconds(ReloadTime);
-    }
+    private void Awake() => _reloadTime = new WaitForSeconds(ReloadTime);
 
     public override void Shoot()
     {
@@ -36,10 +33,7 @@ public class Blaster : Gun
         }
     }
 
-    protected override void Reload()
-    {
-        _coroutine = StartCoroutine(ReloadDelayed());
-    }
+    protected override void Reload() => _coroutine = StartCoroutine(ReloadDelayed());
 
     private IEnumerator ReloadDelayed()
     {
